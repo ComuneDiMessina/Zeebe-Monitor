@@ -1,0 +1,71 @@
+zeebe:
+  client:
+    broker.contactPoint: 127.0.0.1:26500
+    security.plaintext: true
+    
+    worker:
+      hazelcast:
+        connection: localhost:5701
+        connectionTimeout: PT30S
+
+spring:
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/zeebemonitor
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+    
+  autoconfigure:
+    exclude: 
+       org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration,
+       org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
+
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+  mail:
+    host: smtp.gmail.com
+    username: eaialmatest@gmail.com
+    password: covid-19
+    port: 587
+    test-connection: false
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+mail:
+  from: eaialmatest@gmail.com
+  to:  F.carotenuto@almaviva.it
+  system: PRB-DEV
+  active: false
+
+feign:
+  client.config.default.loggerLevel: basic
+  httpclient.disableSslValidation: true
+  httpclient.enabled: false
+  okhttp.enabled: true
+
+usertask:
+   endpoint: http://localhost:8084
+
+
+
+
+#spring:
+#data:
+#mongodb:
+#database: mongomonitor
+#port: 27017
+#host: localhost
+#autoconfigure:
+#exclude:
+#org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,
+#org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration,
+#org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+
+
